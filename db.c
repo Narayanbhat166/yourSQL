@@ -13,11 +13,11 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
-    {
-        printf("Usage: ./a.out fiilename\n");
-        exit(EXIT_SUCCESS);
-    }
+    // if (argc < 2)
+    // {
+    //     printf("Usage: ./a.out fiilename\n");
+    //     exit(EXIT_SUCCESS);
+    // }
 
     char *filename = "dbfile";
     Database *db = database_init(filename);
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
                 printf("Update statement\n");
                 break;
             case DELETE_STATEMENT:
-                printf("Delete statement\n");
+                delete_statement(&statement,ip_buffer,db);
                 break;
             default:
                 printf("ERROR: statement not recognized\n");

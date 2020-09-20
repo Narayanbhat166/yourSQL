@@ -133,6 +133,23 @@ statement_result prepare_select(Statement *statement, input_buffer *ip_buffer, i
     return SYNTAX_OKAY;
 }
 
+statement_result prepare_delete(input_buffer* ip_buffer,char** name){
+    //tokenise the statement
+    char *keyword = strtok(ip_buffer->buffer, " ");
+    char *arg1 = strtok(NULL, " ");
+
+    if(arg1 == NULL  ){
+        printf("ERROR: Required 1 argument(Name)\n");
+        return SYNTAX_ERROR;
+    }
+
+    *name = malloc(sizeof(strlen(arg1)));
+    strcpy(*name,arg1);
+
+    return SYNTAX_OKAY;
+    
+}
+
 void insert_row_into_file(Row *source, void *destination)
 {
     memcpy(destination + ID_OFFSET, &(source->id), ID_SIZE);
