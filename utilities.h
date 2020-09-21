@@ -1,6 +1,6 @@
 void print_prompt()
 {
-    printf("nobodies_sql>");
+    printf("your_sql >");
 }
 
 void read_input(input_buffer *ip_buffer)
@@ -143,11 +143,41 @@ statement_result prepare_delete(input_buffer* ip_buffer,char** name){
         return SYNTAX_ERROR;
     }
 
-    *name = malloc(sizeof(strlen(arg1)));
+    *name = (char* )malloc((strlen(arg1) + 1) * sizeof(char));
     strcpy(*name,arg1);
 
+    return SYNTAX_OKAY;   
+}
+
+statement_result prepare_update(input_buffer* ip_buffer,int *attribute_id,char** name,char** attribute_value){
+    //update narayan email hola@bhola.com -> updates email attribute of narayan to hola@bhola.com
+    //tokenise the statement
+
+    char* keyword = strtok(ip_buffer->buffer, " ");
+    char* name_arg = strtok(NULL," ");
+    char* attribute_arg = strtok(NULL," ");
+    char* value_arg = strtok(NULL," ");
+
+    if(name_arg == NULL || attribute_arg == NULL || value_arg == NULL){
+        printf("ERROR: Required 3 arguments\n");
+        return SYNTAX_ERROR;
+    }
+
+    for(int i = 2;i<TOTAL_ATTRIBUTES;i++){
+        if(strcmp(attribute_arg,attributes_of_student[i]) == 0){
+            *attribute_id = i;
+            break;
+        }
+    }
+
+    *name = (char*)malloc((strlen(name_arg) + 5) * sizeof(char));
+    strcpy(*name,name_arg);
+
+    *attribute_value = (char*)malloc((strlen(value_arg) + 5) * sizeof(char));
+    strcpy(*attribute_value,value_arg);
+
     return SYNTAX_OKAY;
-    
+        
 }
 
 void insert_row_into_file(Row *source, void *destination)

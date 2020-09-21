@@ -16,7 +16,7 @@ Database *database_init(char *filename)
     unsigned int num_rows = file_length / ROW_SIZE;
 
     db->num_rows = num_rows;
-    printf("Read %d rows from file\n", num_rows);
+    // printf("Read %d rows from file\n", num_rows);
 
     return db;
 }

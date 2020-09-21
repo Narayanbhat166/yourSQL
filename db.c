@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
                 insert_statement(&statement, ip_buffer, db);
                 break;
             case UPDATE_STATEMENT:
-                printf("Update statement\n");
+                update_statement(&statement, ip_buffer, db);
                 break;
             case DELETE_STATEMENT:
                 delete_statement(&statement,ip_buffer,db);

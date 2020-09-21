@@ -41,6 +41,16 @@ const unsigned int MAIL_OFFSET = PHONE_OFFSET + PHONE_SIZE;
 const unsigned int COURSE_OFFSET = MAIL_OFFSET + MAIL_SIZE;
 const unsigned int BRANCH_OFFSET = COURSE_OFFSET + COURSE_SIZE;
 
+#define TOTAL_ATTRIBUTES 8
+
+extern char** attributes_of_student;
+extern unsigned int attribute_size_of_student[];
+extern unsigned int attribute_offset_of_student[];
+
+char** attributes_of_student = (char *[]){"id","name","address","dob","phone","email","course","branch"};
+unsigned int attribute_size_of_student[] = {ID_SIZE,NAME_SIZE,ADDRESS_SIZE,DOB_SIZE,PHONE_SIZE,MAIL_SIZE,COURSE_SIZE,BRANCH_SIZE};
+unsigned int attribute_offset_of_student[] = {ID_OFFSET,NAME_OFFSET,ADDRESS_OFFSET,DOB_OFFSET,PHONE_OFFSET,MAIL_OFFSET,COURSE_OFFSET,BRANCH_OFFSET};
+
 typedef struct
 {
     int fd;
