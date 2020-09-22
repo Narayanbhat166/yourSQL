@@ -5,5 +5,5 @@ answer:
 schema -> id int(4 bytes: gcc),Name char(30 bytes),Address char(50 bytes),
 DOB char (10 bytes),mail char(30 bytes),phone char(10 bytes),course char(5 bytes), branch char(5 bytes)
 
-insert 1 Narayan greenstreet,karwar 16-06-2000 9448729432 bhatj1964@gmail.com CS530 CSE
-insert 2 hola greenstreet,karwar 16-06-2000 9448729432 bhatj1964@gmail.com CS530 CSE
+insert 1,Narayan,greenstreet karwar,16-06-2000,9448729432,bhatj1964@gmail.com,CS530,CSE
+insert 2,hola,white street karwar,16-06-2000,9448729432,hello@gmail.com,CS530,ISE

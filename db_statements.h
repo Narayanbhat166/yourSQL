@@ -77,7 +77,6 @@ statement_result execute_delete(Database* db,char** name){
             //copy all next recores to one step behind
             break;
         }
-        printf("Name read %s",temp_name);
         // print_row(&row);
     }
 
@@ -104,15 +103,13 @@ statement_result execute_delete(Database* db,char** name){
                     printf("ERROR: could not write to the file");
                     return EXIT_FAILURE;
                 }   
-                
-
-                printf("Name read %s",temp_name);
                 // print_row(&row);
             }
         }
             db->num_rows--;
-            if(!ftruncate(db->fd,db->num_rows * ROW_SIZE)){
-                printf("TRUNCATED\n");
+            if(ftruncate(db->fd,db->num_rows * ROW_SIZE)){
+                printf("ERROR: could not truncate the filen\n");
+                return EXIT_FAILURE;
             }
     }
 
@@ -130,7 +127,6 @@ statement_result execute_update(Database* db,int attr_id,char** name,char** attr
     //position it to beginning of the file
     lseek(db->fd, 0, SEEK_SET);
     int i;
-    printf("Addr id %d\n",attr_id);
 
     for (i = 0; i < num_rows; i++)
     {
@@ -146,7 +142,6 @@ statement_result execute_update(Database* db,int attr_id,char** name,char** attr
         }
 
         //set the read head to read the next row in next iteration
-        printf("Name read %s",temp_name);
         // print_row(&row);
     }
 
@@ -208,7 +203,6 @@ statement_result delete_statement(Statement *statement, input_buffer *ip_buffer,
         case SYNTAX_ERROR:
             return EXECUTE_FAILURE;
         case SYNTAX_OKAY:
-            printf("Delete %s",name);
             execute_delete(db,&name);
             free(name);
             return EXECUTE_SUCCESS;

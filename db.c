@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     clock_t start, end;
     double cpu_time_used;
     
+    print_welcome_message();
     
     while (true)
     {

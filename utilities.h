@@ -22,6 +22,16 @@ void read_input(input_buffer *ip_buffer)
     // printf("Line read %s\n", ip_buffer->buffer);
 }
 
+void print_welcome_message(){
+    printf("Supported statements:\n");
+    printf("SELECT usage- select *\n");
+    printf("INSERT usage- insert id,name, ..another 6 attributes separated by comma\n");
+    printf("UPDATE usage- update name attribute(except name,id) new_value\n");
+    printf("DELETE usage- delete name\n");
+    printf("All changes are persisted in the file, no need to make commits after changes\n");
+    printf("To exit type exit\n");
+}
+
 statement_type identify_statement(input_buffer *ip_buffer)
 {
 
@@ -47,15 +57,14 @@ statement_result prepare_insert(Statement *statement, input_buffer *ip_buffer)
 {
     //tokenise the statement insert 1 Narayan greenstreet,karwar 16-06-2000 9448729432 bhatj1964@gmail.com CS530 CSE
     char *keyword = strtok(ip_buffer->buffer, " ");
-    char *id_string = strtok(NULL, " ");
-    char *name = strtok(NULL, " ");
-    char *address = strtok(NULL, " ");
-    char *dob = strtok(NULL, " ");
-    char *phone = strtok(NULL, " ");
-    char *mail = strtok(NULL, " ");
-    char *course = strtok(NULL, " ");
-    char *branch = strtok(NULL, " ");
-
+    char *id_string = strtok(NULL, ",");
+    char *name = strtok(NULL, ",");
+    char *address = strtok(NULL, ",");
+    char *dob = strtok(NULL, ",");
+    char *phone = strtok(NULL, ",");
+    char *mail = strtok(NULL, ",");
+    char *course = strtok(NULL, ",");
+    char *branch = strtok(NULL, ",");
     
 
     if (id_string == NULL || name == NULL || address == NULL || dob == NULL || phone == NULL || mail == NULL || course == NULL || branch == NULL)
