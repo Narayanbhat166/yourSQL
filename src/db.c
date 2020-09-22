@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         exit(EXIT_SUCCESS);
     }
 
-    char *filename = "dbfile";
+    char *filename = argv[1];
     Database *db = database_init(filename);
     input_buffer *ip_buffer = construct_input_buffer();
 
@@ -68,8 +68,8 @@ int main(int argc, char *argv[])
             cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
             printf("QUERY OK, took %0.3fs\n\n",cpu_time_used);
         }
-        // free(ip_buffer->buffer);
-        // ip_buffer->buffer = NULL;
+        free(ip_buffer->buffer);
+        ip_buffer->buffer = NULL;
     }
 
     return 0;
