@@ -1,6 +1,6 @@
 void print_prompt()
 {
-    printf("your_sql >");
+    printf("your_sql> ");
 }
 
 void read_input(input_buffer *ip_buffer)
@@ -170,10 +170,10 @@ statement_result prepare_update(input_buffer* ip_buffer,int *attribute_id,char**
         }
     }
 
-    *name = (char*)malloc((strlen(name_arg) + 5) * sizeof(char));
+    *name = (char*)malloc((strlen(name_arg) + 1) * sizeof(char));
     strcpy(*name,name_arg);
 
-    *attribute_value = (char*)malloc((strlen(value_arg) + 5) * sizeof(char));
+    *attribute_value = (char*)malloc((strlen(value_arg) + 1) * sizeof(char));
     strcpy(*attribute_value,value_arg);
 
     return SYNTAX_OKAY;

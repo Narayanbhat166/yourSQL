@@ -10,7 +10,7 @@ void execute_insert(Statement *statement, Database *db)
     int offset_set = lseek(db->fd, offset, SEEK_SET);  
     if (offset_set == offset)
     {
-        void *destination = malloc(sizeof(ROW_SIZE));
+        void *destination = malloc(ROW_SIZE);
         insert_row_into_file(statement->row, destination);
         
         int res = write(db->fd, destination, ROW_SIZE);
@@ -33,7 +33,7 @@ void execute_select(Statement *statement, Database *db, int *arguments)
     {
         //read everything
         unsigned int num_rows = db->num_rows;
-        void *destination = malloc(sizeof(ROW_SIZE) + 5);
+        void *destination = malloc(ROW_SIZE);
         Row row;
 
         //position it to beginning of the file
@@ -57,7 +57,7 @@ void execute_select(Statement *statement, Database *db, int *arguments)
 statement_result execute_delete(Database* db,char** name){
     //find the name
     unsigned int num_rows = db->num_rows;
-    void *destination = malloc(sizeof(ROW_SIZE));
+    void *destination = malloc(ROW_SIZE);
     Row row;
     char temp_name[100];
 
@@ -124,7 +124,7 @@ statement_result execute_delete(Database* db,char** name){
 statement_result execute_update(Database* db,int attr_id,char** name,char** attr_value){
     //find the name
     unsigned int num_rows = db->num_rows;
-    void *destination = malloc(sizeof(ROW_SIZE));
+    void *destination = malloc(ROW_SIZE);
     char temp_name[100];
 
     //position it to beginning of the file

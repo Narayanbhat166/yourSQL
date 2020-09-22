@@ -13,11 +13,11 @@
 
 int main(int argc, char *argv[])
 {
-    // if (argc < 2)
-    // {
-    //     printf("Usage: ./a.out fiilename\n");
-    //     exit(EXIT_SUCCESS);
-    // }
+    if (argc < 2)
+    {
+        printf("Usage: ./a.out fiilename\n");
+        exit(EXIT_SUCCESS);
+    }
 
     char *filename = "dbfile";
     Database *db = database_init(filename);
@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
             cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
             printf("QUERY OK, took %0.3fs\n\n",cpu_time_used);
         }
-        free(ip_buffer->buffer);
-        ip_buffer->buffer = NULL;
+        // free(ip_buffer->buffer);
+        // ip_buffer->buffer = NULL;
     }
 
     return 0;
